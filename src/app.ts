@@ -1,34 +1,33 @@
-class DivideZeroException implements Error {
-    constructor(public name: string, public message: string, public numerator: number){
-        //
+class Dog{
+    public  annoy(): void {
+        console.log("I annoy");
     }
 
-}
+    public makeNoise(): void {
+        console.log("auf auf");
+    }
 
-
-function dividir(numerator: number, denominator: number): number | null {
-    try{
-        if(denominator === 0){
-            throw new DivideZeroException("DivideByZero",
-            "You can't divide by zero", numerator);
-        }
-
-        return numerator/denominator;
-    } catch(e){
-        if(e instanceof DivideZeroException){
-            console.log('name: ', e.name);
-            console.log('message', e.message);
-            console.log('numerator: ', e.numerator);
-        }
-        else{
-            let err = <Error>e;
-            console.log(err.message);
-            
-        }
-        return null;
+    public playDead(): void{
+        console.log("...");
+        
     }
 }
 
-console.log(dividir(2,3));
-console.log(dividir(2,0));
+class Cat{
+    public annoy(): void {
+        console.log("I annoy");
+    }
 
+    public makeNoise(): void{
+        console.log("miau");
+    }
+
+    public beIndifferent(): void{
+        console.log("I don't care about anything");
+        
+    }
+}
+
+function startMakingNoise(animal: Dog | Cat): void{
+    animal.makeNoise();
+}
