@@ -11,11 +11,12 @@ function sendMessage(message: EmailMessage){
     console.log(message)
 }
 
-let message: EmailMessage = {
+let message = {
     body: "This is body",
     subject: "This is subject",
     email: "example@gmail.com",
-    priority: true
+    priority: true,
+    otherProperty: "I can..."
 };
 
 sendMessage(message);
