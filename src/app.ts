@@ -1,23 +1,24 @@
-class Dog{
+class Animal {
     public  annoy(): void {
         console.log("I annoy");
     }
 
     public makeNoise(): void {
+        console.log("generic noise");
+    }
+}
+
+class Dog extends Animal{
+    public makeNoise(): void {
         console.log("auf auf");
     }
 
     public playDead(): void{
-        console.log("...");
-        
+        console.log("...");   
     }
 }
 
-class Cat{
-    public annoy(): void {
-        console.log("I annoy");
-    }
-
+class Cat extends Animal{
     public makeNoise(): void{
         console.log("miau");
     }
@@ -28,7 +29,7 @@ class Cat{
     }
 }
 
-function startMakingNoise(animal: Dog | Cat): void{
+function startMakingNoise(animal: Animal): void{
     animal.makeNoise();
 }
 
