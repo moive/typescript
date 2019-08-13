@@ -1,6 +1,7 @@
 abstract class Animal {
-    public  annoy(): void {
+    public  annoy() {
         console.log("I annoy");
+        return this;
     }
 
     public abstract makeNoise(): void;
@@ -9,8 +10,20 @@ abstract class Animal {
 // let animal = new Animal();
 
 class Dog extends Animal{
-    public makeNoise(): void {
+    public makeNoise(): Dog {
         console.log("auf auf");
+        return this;
+    }
+
+    public bites(): Dog{
+        console.log('Bites his victim');
+        return this;
+    }
+
+    public runAway(): Dog{
+        console.log('runs away with his tail between legs.');
+        return this;
+        
     }
 
     public playDead(): void{
@@ -36,17 +49,7 @@ function startMakingNoise(animal: Animal): void{
 let dog = new Dog();
 let cat = new Cat();
 
-console.log('dog');
-startMakingNoise(dog);
-dog.annoy();
-dog.makeNoise();
-console.log("-----------");
-console.log("cat");
-startMakingNoise(cat);
-cat.annoy();
-cat.beIndifferent();
-
-
+dog.makeNoise().bites().bites().annoy().bites().playDead();
 
 
 
