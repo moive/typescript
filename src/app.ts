@@ -31,3 +31,21 @@ class Cat{
 function startMakingNoise(animal: Dog | Cat): void{
     animal.makeNoise();
 }
+
+let dog = new Dog();
+let cat = new Cat();
+
+console.log('dog');
+startMakingNoise(dog);
+dog.annoy();
+dog.makeNoise();
+console.log("-----------");
+console.log("cat");
+startMakingNoise(cat);
+cat.annoy();
+cat.beIndifferent();
+
+
+
+
+
