@@ -1,0 +1,53 @@
+{
+  "name": "demo-vuetify",
+  "description": "A Vue.js project",
+  "version": "1.0.0",
+  "author": "",
+  "private": true,
+  "scripts": {
+    "local:app": "webpack --mode development --progress --hide-modules --config buildJs/webpack.config.js",
+    "local:app:watch": "webpack --mode development --progress --hide-modules --watch --config buildJs/webpack.config.js",
+    "local:app:min": "webpack --mode production --progress --hide-modules --config buildJs/webpack.config.js",
+    "dev:app": "webpack --mode production --progress --hide-modules --env.NODE_ENV=production --config buildJs/webpack.config.js"
+  },
+  "dependencies": {
+    "babel-polyfill": "^6.26.0"
+  },
+  "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.5.5",
+    "@servicestack/client": "^1.0.31",
+    "@typescript-eslint/eslint-plugin": "^1.13.0",
+    "@typescript-eslint/parser": "^1.13.0",
+    "babel-loader": "^8.0.6",
+    "css-loader": "^3.2.0",
+    "deepmerge": "^4.0.0",
+    "eslint": "^6.1.0",
+    "eslint-plugin-vue": "^5.2.3",
+    "fibers": "^4.0.1",
+    "file-loader": "^4.2.0",
+    "friendly-errors-webpack-plugin": "^1.7.0",
+    "mini-css-extract-plugin": "^0.8.0",
+    "optimize-css-assets-webpack-plugin": "^5.0.3",
+    "postcss-loader": "^3.0.0",
+    "sass": "^1.22.9",
+    "sass-loader": "^7.2.0",
+    "ss-utils": "^0.2.3",
+    "stylus": "^0.54.5",
+    "stylus-loader": "^3.0.2",
+    "ts-loader": "^6.0.4",
+    "typescript": "^3.5.3",
+    "uglifyjs-webpack-plugin": "^2.2.0",
+    "update": "^0.7.4",
+    "webpack": "^4.39.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-dev-server": "^3.8.0"
+  },
+  "browserslist": [
+    "last 2 versions",
+    "safari >= 9",
+    "ie >= 9",
+    "ios 9",
+    "android 4"
+  ]
+}

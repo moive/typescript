@@ -1,0 +1,28 @@
+{
+  "compilerOptions": {
+    "target": "es5",
+    "lib": [
+      "dom",
+      "es2015"
+    ],
+    "module": "es2015",
+    "moduleResolution": "node",
+    "experimentalDecorators": true,
+    "strict": false,
+    "baseUrl": ".",
+    "isolatedModules": false,
+    "noImplicitReturns": true,
+    "strictNullChecks": false,
+    "removeComments": true,
+    "suppressImplicitAnyIndexErrors": false,
+    "strictFunctionTypes": false,
+    "alwaysStrict": false
+  },
+  "include": [
+    "./src/*.ts"
+  ],
+  "compileOnSave": false,
+  "exclude": [
+    "./node_modules"
+  ] 
+}
