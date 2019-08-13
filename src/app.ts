@@ -1,5 +1,8 @@
-interface EmailMessage {
+interface Message {
     body: string,
+}
+
+interface EmailMessage extends Message {
     subject: string,
     email: string,
     priority: boolean
