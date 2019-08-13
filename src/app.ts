@@ -1,12 +1,12 @@
-class Animal {
+abstract class Animal {
     public  annoy(): void {
         console.log("I annoy");
     }
 
-    public makeNoise(): void {
-        console.log("generic noise");
-    }
+    public abstract makeNoise(): void;
 }
+// Cannot create an instance of an abstract class
+// let animal = new Animal();
 
 class Dog extends Animal{
     public makeNoise(): void {
