@@ -1,25 +1,39 @@
-interface Message {
-    body: string,
+interface Transformer {
+    transformerString(value: string): string;
 }
 
-interface EmailMessage extends Message {
-    subject: string,
-    email: string,
-    priority: boolean
+class Uppercase implements Transformer{
+    public transformerString(value: string): string{
+        return value.toUpperCase();
+    }
 }
 
+class Reversed implements Transformer {
+    transformerString(value: string): string{
+        let valueReversed: string = value.split('')
+        .map((char, index, arr) => arr[arr.length - 1 - index]).join('');
 
-function sendMessage(message: EmailMessage){
-    // send message
-    console.log(message)
+        return valueReversed;
+    }
 }
 
-let message = {
-    body: "This is body",
-    subject: "This is subject",
-    email: "example@gmail.com",
-    priority: true,
-    otherProperty: "I can..."
-};
+function processing(value: string, ...transformations: Transformer[]): string{
+    let answer: string = value;
+    for (let i = 0; i < transformations.length; i++) {
+        let transformation = transformations[i];
+        answer = transformation.transformerString(answer);
+        
+    }
+    return answer;
+}
 
-sendMessage(message);
+let uppercase = new Uppercase();
+let reversed = new Reversed();
+
+let namePerson = "Moises";
+let namePerson2 = "Veronika";
+let namePerson3 = "Daniela";
+
+console.log(processing(namePerson, uppercase));
+console.log(processing(namePerson2, reversed));
+console.log(processing(namePerson3, uppercase, reversed));
