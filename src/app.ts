@@ -1,47 +1,20 @@
+interface MyInterface<T, U>{
+    myFirstFunction(value: T): void;
+    mySecondFunction(value: U): void;
+    myThirdFunction(value1: T, value2: U): void;
+}
 
-class SetValue<T>{
-    private _set: Array<T> = [];
-
-    
-    public get set() : Array<T> {
-        return this._set;
+class MyClass<T,U> implements MyInterface<T, U>{
+    public myFirstFunction(value: T){
+        console.log(value);
     }
-
-    public add(value: T){
-        if(!this.contains(value)){
-            this._set.push(value);
-        }
+    public mySecondFunction(value: U){
+        console.log(value);
     }
-    
-    public contains(value: T): boolean{
-        let exists = false;
-        this._set.some((oldValue) => {
-            if(value === oldValue){
-                exists = true;
-                return true;
-            }
-
-            return false;
-        });
-
-        return exists;
+    public myThirdFunction(value1: T, value2: U){
+        console.log(value1);
     }
 }
 
-console.log("---- set numbers ----");
-
-let setNumbers = new SetValue<number>();
-setNumbers.add(1);
-setNumbers.add(2);
-setNumbers.add(1);
-console.log(setNumbers.set);
-
-
-console.log("---- set strings ------");
-
-let setStrings = new SetValue<string>();
-setStrings.add("Moises");
-setStrings.add("Veronika");
-setStrings.add("Daniela");
-setStrings.add("Veronika");
-console.log(setStrings.set);
+let myClass = new MyClass<string, number>();
+myClass.myThirdFunction("hi", 5);
