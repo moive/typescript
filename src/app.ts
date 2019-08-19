@@ -48,3 +48,17 @@ const user: Developer = {name: "Patrick", favoriteLanguage: "Typescript"};
 const userWithId = identifyUser(user);
 console.log(userWithId)
 console.log(`${userWithId.name} (${userWithId.id}) favorite language is ${userWithId.favoriteLanguage}`);
+
+//generics with union
+
+interface objectWithAge{
+    kind: "objectwithAge";
+    age: number;
+}
+
+function func<T extends objectWithAge | objectWithAge []>(p: T){
+    if(p instanceof Array){
+        return p[0];
+    }
+    return p;
+}
