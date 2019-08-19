@@ -89,3 +89,26 @@ function showHuman2(obj: man, field: keyof man): void{
 }
 
 showHuman2(homo, 'name');
+
+function prop<T, K extends keyof T>(obj: T, key: K){
+    return obj[key];
+}
+
+const todo = {
+    id:1,
+    text: "Buy milk",
+    due: new Date(2019, 8, 19)
+}
+
+interface Todo{
+    id: number;
+    text: string;
+    due: Date;
+}
+
+type TodoKeys = keyof Todo;
+
+
+const id = prop(todo, "id");
+const text = prop(todo, "text");
+const due = prop(todo, "due");
