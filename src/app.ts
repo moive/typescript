@@ -62,3 +62,30 @@ function func<T extends objectWithAge | objectWithAge []>(p: T){
     }
     return p;
 }
+
+//keyof
+
+interface man {
+    name: string;
+    birtDate: Date;
+    isHappy: boolean;
+}
+
+const homo: man = {
+    name: "tks",
+    birtDate: new Date(1234,0,1),
+    isHappy: true
+}
+
+function showHuman(obj: man, field: string): void{
+    console.log((<any>obj)[field]);
+}
+
+showHuman(homo, "isHappy");
+
+
+function showHuman2(obj: man, field: keyof man): void{
+    console.log(obj[field]);
+}
+
+showHuman2(homo, 'name');
