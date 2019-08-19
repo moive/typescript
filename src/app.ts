@@ -1,17 +1,11 @@
-interface WithLength{
-    length: number;
+
+interface AnyKindOfObject {
+    what: string;
 }
 
-function myFunction<T extends WithLength>(value: T){
-    value.length;
+interface reuseableTypes<T extends object>{
+    entity: T;
 }
 
-
-myFunction("Moises");
-
-var myVar = {
-    length: 5,
-    name: "Moises"
-};
-
-myFunction(myVar);
+const d: reuseableTypes<AnyKindOfObject> = {entity: {what: "wert"}}
+console.log(d.entity.what)
