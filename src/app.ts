@@ -31,3 +31,20 @@ const readonly1 : Readonly<Todo> = {
 }
 //Cannot assign to 'title' because it is a read-only property.
 //readonly1.title = 'Hello';
+
+
+//Mapped Record<K,T>
+
+interface PageInfo{
+    title: string;
+}
+
+type Page = 'home' | 'about' | 'contact';
+
+const record1: Record<Page, PageInfo> = {
+    about: {title: 'about'},
+    contact: {title: 'contact'},
+    home: {title: 'home'}
+};
+
+console.log(record1);
