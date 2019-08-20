@@ -78,3 +78,17 @@ const omit1: TodoPreviewOmit = {
 }
 
 console.log('omit', omit1)
+
+//Mapped Required<T>
+
+interface Props{
+    title: string,
+    description?: string
+}
+
+const required1: Props = {title: 'hello'};
+
+const required2: Required<Props> = {title: 'hi', description:'lorem ipsum'}
+
+console.log('required1', required1)
+console.log('required2', required2)
