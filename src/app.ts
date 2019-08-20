@@ -63,3 +63,18 @@ const pick1: TodoPreview = {
 };
 
 console.log(pick1);
+
+//Mapped Omit<T,K>
+
+interface TodoOmit extends Todo{
+    completed: boolean;
+}
+
+type TodoPreviewOmit = Omit<TodoOmit, 'description'>;
+
+const omit1: TodoPreviewOmit = {
+    title: 'Clean room',
+    completed: true
+}
+
+console.log('omit', omit1)
