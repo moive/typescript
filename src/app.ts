@@ -48,3 +48,18 @@ const record1: Record<Page, PageInfo> = {
 };
 
 console.log(record1);
+
+//Mapped Pick<T,K>
+
+interface TodoPick extends Todo{
+    completed: boolean;
+}
+
+type TodoPreview = Pick<TodoPick, 'title' | 'completed'>;
+
+const pick1: TodoPreview = {
+    title: 'Clean room',
+    completed: false
+};
+
+console.log(pick1);
