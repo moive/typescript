@@ -1,11 +1,11 @@
 const promise = new Promise((resolve, reject)=>{
-    resolve(456);
+    reject(new Error("Sommething awful happened"));
 });
 
 promise.then((res)=>{
-    console.log('I get called:', res === 456);
+    // This is never called
 });
 
 promise.catch((err)=>{
-    console.log(err);
+    console.log('I get called:', err.message);
 });
