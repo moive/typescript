@@ -1,16 +1,13 @@
+function iReturnPromiseAfter1Second(): Promise<string> {
+    return new Promise((resolve)=>{
+        setTimeout(_ => resolve('Hello world!'), 2000)
+    });
+};
+
 Promise.resolve(123)
-    .then((res)=>{
-        throw new Error('something bad happend');
-        return 456
+    .then((res) => {
+        return iReturnPromiseAfter1Second();
     })
-    .catch((err)=>{
-        console.log('first catch:', err.message);
-        return 123
-    })
-    .then((res)=>{
-        console.log(res);
-        return Promise.resolve(789);
-    })
-    .catch((err)=>{
-        console.log('second catch:', err.message);
+    .then((res) => {
+        console.log(res)
     });
