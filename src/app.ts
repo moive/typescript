@@ -1,11 +1,16 @@
-const promise = new Promise((resolve, reject)=>{
-    reject(new Error("Sommething awful happened"));
-});
-
-promise.then((res)=>{
-    // This is never called
-});
-
-promise.catch((err)=>{
-    console.log('I get called:', err.message);
-});
+Promise.resolve(123)
+    .then((res) => {
+        console.log(res);
+        return 456
+    })
+    .then((res)=>{
+        console.log(res);
+        return Promise.resolve(789);
+    })
+    .then((res)=>{
+        console.log(res);
+        return 102
+    })
+    .then((r)=> {
+        console.log(r)
+    });
