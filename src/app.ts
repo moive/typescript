@@ -1,4 +1,4 @@
-Promise.resolve(123)
+Promise.reject(new Error('something bad happened'))
     .then((res) => {
         console.log(res);
         return 456
@@ -13,4 +13,7 @@ Promise.resolve(123)
     })
     .then((r)=> {
         console.log(r)
+    })
+    .catch((err) => {
+        console.log(err.message)
     });
