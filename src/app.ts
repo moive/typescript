@@ -1,19 +1,16 @@
-Promise.reject(new Error('something bad happened'))
-    .then((res) => {
-        console.log(res);
+Promise.resolve(123)
+    .then((res)=>{
+        throw new Error('something bad happend');
         return 456
+    })
+    .catch((err)=>{
+        console.log('first catch:', err.message);
+        return 123
     })
     .then((res)=>{
         console.log(res);
         return Promise.resolve(789);
     })
-    .then((res)=>{
-        console.log(res);
-        return 102
-    })
-    .then((r)=> {
-        console.log(r)
-    })
-    .catch((err) => {
-        console.log(err.message)
+    .catch((err)=>{
+        console.log('second catch:', err.message);
     });
