@@ -1,12 +1,30 @@
 const path = require('path');
 const webpack = require('webpack');
-const FriendlyErrorsPlugin = require('friendly-errors-webpack-plugin');
-const UglifyJSPlugin = require('uglifyjs-webpack-plugin');
+const ProgressPlugin = require("progress-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const OptimizeCSSAssetsPlugin = require("optimize-css-assets-webpack-plugin");
+const NodemonPlugin = require('nodemon-webpack-plugin');
+const { spawn } = require("child_process");
+const { resolve } = require('path');
 
 
 let Env = "local";
+
+function OnFirstBuildDonePlugin() {
+	let isInitialBuild = true
+	return {
+		apply: compiler => {
+			compiler.hooks.done.tap("OnFirstBuildDonePlugin", compilation => {
+				if (isInitialBuild) {
+					isInitialBuild = false
+					spawn("nodemon dist/js/app.js --watch dist", {
+						stdio: "inherit",
+						shell: true
+					})
+				}
+			})
+		}
+	}
+  }
 
 let settings = {
 	entry: {
@@ -15,26 +33,28 @@ let settings = {
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
 		publicPath: '/',
-		filename: 'js/[name].js?v=[hash]'
+		filename: 'js/[name].js'
 		//library: 'componentProyect',
 		//libraryTarget: "umd"
 	},
 	module: {
 		rules: [
 			{ 
-				test: /\.ts$/, 
-				loader: 'ts-loader',   
-				exclude: /node_modules\/(?!@pictoric\/fb-components)|vue\/src/, 
+				test: /\.ts(x?)$/, 
+				exclude: /node_modules\/(?!@pictoric\/fb-components)|vue\/src/,
+				use: [
+					{
+						loader: "ts-loader",
+						options: {
+							transpileOnly: true,
+						},
+					}
+				]
 			},
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				use: {
-					loader: 'babel-loader',
-					options: {
-						presets: ['@babel/preset-env']
-					}
-				}
+				loader: 'babel-loader',
 			},
 			{
 				test: /\.(png|jpg|gif|svg)$/,
@@ -63,8 +83,6 @@ let settings = {
 						loader: 'sass-loader',
 						options: {
 							implementation: require('sass'),
-							fiber: require('fibers'),
-							indentedSyntax: true // optional
 						}
 					}
 				]
@@ -93,39 +111,48 @@ let settings = {
 	resolve: {
 		enforceExtension: false,
 		//unsafeCache: true,
-		extensions: [".ts", ".js"],
+		extensions: [".ts", ".tsx", ".js", ".jsx"],
 		alias: {
-			'vue$': 'vue/dist/vue.common.js',
+			// 'vue$': 'vue/dist/vue.common.js',
+			vue: "@vue/runtime-dom"
 		}
 	},
+	mode:'development',
 	devServer: {
-		historyApiFallback: true,
-		noInfo: true
-	},
-	performance: {
-		hints: false
+		contentBase: path.join(__dirname, "dist"),
+        historyApiFallback: true,
+        // noInfo: true,
+        port: 3000,
+        compress: true,
+		
+		// static:{
+		// 	directory: resolve(__dirname,'')
+		// }
 	},
 	plugins: [
-		new FriendlyErrorsPlugin(),
+		new ProgressPlugin({
+            activeModules: false,
+            entries: true,
+            handler(percentage, message, ...args) {
+                // custom logic
+            },
+            modules: true,
+            modulesCount: 5000,
+            profile: false,
+            dependencies: true,
+            dependenciesCount: 10000,
+            percentBy: null,
+        }),
 		new webpack.DefinePlugin({
 			ENV: JSON.stringify(Env)
 		}),
 		new MiniCssExtractPlugin({
 			filename: 'css/dist/[name]-[hash].css',
 		}),
+		OnFirstBuildDonePlugin()
 	],
 	optimization: {
-		noEmitOnErrors: true,
-				concatenateModules: false,
-				namedModules: true,
-				minimizer: [
-			new UglifyJSPlugin({
-				cache: true,
-						parallel: true,
-				sourceMap: true,
-			}),
-			new OptimizeCSSAssetsPlugin({}),
-		],
+		//
 	}
 }
 
