@@ -4,7 +4,7 @@ function iReturnPromiseAfter1Second(): Promise<string> {
 	});
 }
 
-Promise.resolve(123)
+export const testPromiseApp = Promise.resolve(123)
 	.then((res) => {
 		return iReturnPromiseAfter1Second();
 	})

@@ -4,7 +4,6 @@ const ProgressPlugin = require("progress-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 const NodemonPlugin = require('nodemon-webpack-plugin');
 const { spawn } = require("child_process");
-const { resolve } = require('path');
 
 
 let Env = "local";
@@ -16,7 +15,7 @@ function OnFirstBuildDonePlugin() {
 			compiler.hooks.done.tap("OnFirstBuildDonePlugin", compilation => {
 				if (isInitialBuild) {
 					isInitialBuild = false
-					spawn("nodemon dist/js/app.js --watch dist", {
+					spawn("nodemon dist/js/index.js --watch dist", {
 						stdio: "inherit",
 						shell: true
 					})
@@ -28,7 +27,7 @@ function OnFirstBuildDonePlugin() {
 
 let settings = {
 	entry: {
-		app: ["babel-polyfill", "./src/app.ts"],
+		index: ["babel-polyfill", "./src/index.ts"],
 	},
 	output: {
 		path: path.resolve(__dirname, '../dist/'),
@@ -124,7 +123,7 @@ let settings = {
         // noInfo: true,
         port: 3000,
         compress: true,
-		
+
 		// static:{
 		// 	directory: resolve(__dirname,'')
 		// }
