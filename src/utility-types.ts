@@ -73,3 +73,15 @@ export const todoPick: TodoPreviewPick = {
 	title: "Clean room",
 	completed: false,
 };
+
+const showProps = <T>(o: T, ...keys: (keyof T)[]): void => {
+	keys.forEach((key) => console.log(o[key]));
+};
+
+const dev = {
+	type: "frontend",
+	languages: ["js", "css", "html"],
+	senior: true,
+};
+
+export const otherExample = showProps(dev, "type", "languages");
