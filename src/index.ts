@@ -10,7 +10,7 @@ import {
 	updatedProduct,
 } from "./utility-types";
 
-testPromiseApp;
+/* testPromiseApp;
 console.log("names: ", names);
 console.log(getCssTransalteProperty({ x: 25, y: 50, z: 45 }));
 applycssrules;
@@ -18,4 +18,4 @@ console.log(app);
 console.log(pickEx);
 console.log(todoPick);
 otherExample;
-console.log(updatedProduct);
+console.log(updatedProduct); */
