@@ -85,3 +85,41 @@ const dev = {
 };
 
 export const otherExample = showProps(dev, "type", "languages");
+
+interface ProductItem {
+	name: string;
+	price: number;
+}
+
+type Evolver<O> = {
+	[Key in keyof O]: (arg: O[Key]) => O[Key];
+};
+
+const formatString = (str: string) => (
+	(str = str.trim()), str[0].toUpperCase() + str.substr(0)
+);
+
+const applyIVA = (price: number): number => price * 1.21;
+
+const transformation: Evolver<ProductItem> = {
+	name: formatString,
+	price: applyIVA,
+};
+
+const evolve = <Obj extends object>(
+	transformations: Evolver<Obj>,
+	obj: Obj
+): Obj => {
+	return Object.keys(obj).reduce<Obj>((result, key) => {
+		result[key] =
+			key in transformations ? transformations[key](obj[key]) : obj[key];
+		return result;
+	}, {} as Obj);
+};
+
+const product: ProductItem = {
+	name: '     macbook Pro 16"',
+	price: 2638,
+};
+
+export const updatedProduct = evolve(transformation, product);

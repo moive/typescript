@@ -7,6 +7,7 @@ import {
 	otherExample,
 	pickEx,
 	todoPick,
+	updatedProduct,
 } from "./utility-types";
 
 testPromiseApp;
@@ -17,3 +18,4 @@ console.log(app);
 console.log(pickEx);
 console.log(todoPick);
 otherExample;
+console.log(updatedProduct);
