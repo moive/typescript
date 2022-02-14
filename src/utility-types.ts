@@ -46,6 +46,7 @@ const pick = <O, K extends keyof O>(keys: K[], obj: O): Pick<O, K> => {
 	keys.forEach((k) => {
 		copy[k] = obj[k];
 	});
+	console.log("copy", copy);
 
 	return copy;
 };
@@ -59,3 +60,16 @@ const user: User = {
 const partialWithId = pick(["id", "name"], user);
 
 export const pickEx = partialWithId.name;
+
+interface Todo {
+	title: string;
+	description: string;
+	completed: boolean;
+}
+
+type TodoPreviewPick = Pick<Todo, "title" | "completed">;
+
+export const todoPick: TodoPreviewPick = {
+	title: "Clean room",
+	completed: false,
+};

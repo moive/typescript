@@ -1,7 +1,7 @@
 import { testPromiseApp } from "./app";
 import { names } from "./ex-Keof";
 import { getCssTransalteProperty } from "./dimensional-coordinates";
-import { app, applycssrules, pickEx } from "./utility-types";
+import { app, applycssrules, pickEx, todoPick } from "./utility-types";
 
 testPromiseApp;
 console.log("names: ", names);
@@ -9,3 +9,4 @@ console.log(getCssTransalteProperty({ x: 25, y: 50, z: 45 }));
 applycssrules;
 console.log(app);
 console.log(pickEx);
+console.log(todoPick);
