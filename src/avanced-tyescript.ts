@@ -36,3 +36,26 @@ const { setState } = createState({
 });
 
 console.log(setState({ posts: 19, premium: true }));
+
+interface Coord {
+	x: number;
+	y: number;
+	z?: number;
+}
+
+class Point3D {
+	private coord: Required<Coord>;
+	constructor(coord: Coord) {
+		this.coord = {
+			...coord,
+			z: coord.z || 0,
+		};
+	}
+
+	getZ() {
+		return this.coord.z;
+	}
+}
+
+const p3d = new Point3D({ x: 1, y: 2, z: 5 });
+console.log(p3d.getZ());
