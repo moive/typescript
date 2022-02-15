@@ -18,3 +18,21 @@ const tailInmutable = <T>(array: Readonly<T[]>): T[] => {
 
 console.log(sampleArray, tailMutable(sampleArray));
 console.log(otherArray, tailInmutable(otherArray));
+
+const createState = <T extends object>(initialState: T) => {
+	let state: T = initialState;
+
+	return {
+		setState: (partialState: Partial<T>) =>
+			(state = { ...state, ...partialState }),
+	};
+};
+
+const { setState } = createState({
+	username: "b4dc4t",
+	avatar: "car.png",
+	posts: 18,
+	premium: false,
+});
+
+console.log(setState({ posts: 19, premium: true }));
