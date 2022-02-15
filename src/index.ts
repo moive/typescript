@@ -1,3 +1,4 @@
+import { colorTerminal } from "./utils/util";
 import { testPromiseApp } from "./app";
 import { names } from "./ex-Keof";
 import { getCssTransalteProperty } from "./dimensional-coordinates";
@@ -9,6 +10,7 @@ import {
 	todoPick,
 	updatedProduct,
 } from "./utility-types";
+import { palette } from "./avanced-tyescript";
 
 /* testPromiseApp;
 console.log("names: ", names);
@@ -19,3 +21,4 @@ console.log(pickEx);
 console.log(todoPick);
 otherExample;
 console.log(updatedProduct); */
+console.log(colorTerminal(palette, "red"));
