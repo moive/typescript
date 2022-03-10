@@ -149,3 +149,34 @@ type choice = "left" | "right" | "center" | undefined | null;
 type ValidChoice = NonNullable<choice>;
 
 let t: ValidChoice;
+
+// FUNCTION HELPER
+interface UserIdentify {
+	name: string;
+	id: number;
+}
+
+const addTimestamp = (user: UserIdentify, useLocale: boolean = false) => ({
+	...user,
+	timestamp: useLocale ? Date().toLocaleString() : Date.now(),
+});
+
+type UserWithTimestamp = ReturnType<typeof addTimestamp>;
+type Params = Parameters<typeof addTimestamp>;
+
+// caso práctico
+type GenericFunction = (...args: any[]) => any;
+
+const delay =
+	<F extends GenericFunction>(f: F, t: number) =>
+	(...args: Parameters<F>): Promise<ReturnType<F>> => {
+		return new Promise((resolve) => {
+			setTimeout(() => resolve(f(...args)), t);
+		});
+	};
+
+const shout = (text: string) => `${text.toUpperCase()}!!!`;
+console.log(shout("pim pam"));
+
+const delayedShout = delay(shout, 1000);
+delayedShout("toma lacasitos").then((msg) => console.log(msg));
