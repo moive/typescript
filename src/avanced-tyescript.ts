@@ -142,3 +142,10 @@ type UkSizes = Record<Sizes, number>;
 
 const eurSizes: EurSizes = { small: "s", medium: "m", large: "l" };
 const ukSizes: UkSizes = { small: 8, medium: 10, large: 12 };
+
+// NULLABLE
+type choice = "left" | "right" | "center" | undefined | null;
+
+type ValidChoice = NonNullable<choice>;
+
+let t: ValidChoice;
