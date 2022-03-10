@@ -1,3 +1,5 @@
+// TYPES
+
 type DarkColors = "black" | "grey";
 type LightColors = "white" | "yellow" | "pink";
 
@@ -7,6 +9,7 @@ type Palette<T extends Status> = T extends "sad" ? DarkColors : LightColors;
 
 export const palette: Palette<"happy"> = "white";
 
+// READONLY
 const sampleArray = [1, 2, 3];
 const otherArray = [2, 4, 6, 8];
 
@@ -19,6 +22,7 @@ const tailInmutable = <T>(array: Readonly<T[]>): T[] => {
 console.log(sampleArray, tailMutable(sampleArray));
 console.log(otherArray, tailInmutable(otherArray));
 
+// PARTIAL
 const createState = <T extends object>(initialState: T) => {
 	let state: T = initialState;
 
@@ -37,6 +41,7 @@ const { setState } = createState({
 
 console.log(setState({ posts: 19, premium: true }));
 
+//REQUIRED
 interface Coord {
 	x: number;
 	y: number;
@@ -59,3 +64,57 @@ class Point3D {
 
 const p3d = new Point3D({ x: 1, y: 2, z: 5 });
 console.log(p3d.getZ());
+
+// EXCLUDE & EXTRACT
+
+type Diff<A extends object, B extends object> = {
+	[P in Exclude<keyof A, keyof B>]: A[P];
+};
+
+type Common<A extends object, B extends object> = {
+	[P in Extract<keyof A, keyof B>]: A[P] | B[P];
+};
+
+interface UserDetails {
+	name: string;
+	id: string;
+	age: number;
+	phone: number;
+	married: boolean;
+}
+
+interface UserID {
+	name: string;
+	id: number;
+}
+
+type UserDiff = Diff<UserDetails, UserID>;
+type UserCommon = Common<UserDetails, UserID>;
+
+const calculateCommon = <A extends object, B extends object>(
+	a: A,
+	b: B
+): Common<A, B> => {
+	const result = { ...a };
+	for (const key in a) {
+		if (a.hasOwnProperty(key) && !b.hasOwnProperty(key)) delete result[key];
+	}
+	return result;
+};
+
+const userId: UserID = {
+	name: "Moises",
+	id: 2345454,
+};
+
+const userDetail: UserDetails = {
+	name: "Oscar",
+	id: "497644",
+	age: 35,
+	phone: 9144654654,
+	married: true,
+};
+
+const userCommon = calculateCommon(userId, userDetail);
+
+console.log(userCommon);
