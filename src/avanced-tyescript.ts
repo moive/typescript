@@ -133,3 +133,12 @@ const sampleObj = { a: "A", b: "B", c: "C" };
 
 const onlyC = omit(sampleObj, "a", "b");
 console.log(onlyC);
+
+// RECORD
+
+type Sizes = "small" | "medium" | "large";
+type EurSizes = Record<Sizes, string>;
+type UkSizes = Record<Sizes, number>;
+
+const eurSizes: EurSizes = { small: "s", medium: "m", large: "l" };
+const ukSizes: UkSizes = { small: 8, medium: 10, large: 12 };
