@@ -118,3 +118,18 @@ const userDetail: UserDetails = {
 const userCommon = calculateCommon(userId, userDetail);
 
 console.log(userCommon);
+
+// PICK AND OMIT
+const omit = <T extends object, K extends keyof T>(
+	o: T,
+	...keys: K[]
+): Omit<T, K> => {
+	const result = { ...o };
+	keys.forEach((key) => delete result[key]);
+	return result;
+};
+
+const sampleObj = { a: "A", b: "B", c: "C" };
+
+const onlyC = omit(sampleObj, "a", "b");
+console.log(onlyC);
