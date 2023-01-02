@@ -17,7 +17,7 @@
     "@babel/core": "^7.17.5",
     "@babel/preset-env": "^7.16.11",
     "@servicestack/client": "^1.1.20",
-    "babel-loader": "^8.2.3",
+    "babel-loader": "^8.3.0",
     "css-loader": "^6.7.1",
     "deepmerge": "^4.2.2",
     "eslint": "^8.10.0",
