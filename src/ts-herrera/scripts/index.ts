@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import "./task-obj-interface";
+import "./02-task-obj-interface";
 
 /*
     ===== Código de TypeScript =====
