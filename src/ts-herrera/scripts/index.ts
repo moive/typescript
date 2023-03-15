@@ -1,6 +1,5 @@
 import "../sass/style.scss";
-
-console.log("Hola Mundo!!");
+import "./task-obj-interface";
 
 /*
     ===== Código de TypeScript =====
