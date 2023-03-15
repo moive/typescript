@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import "./03-music-player";
+import "./04-product";
 
 /*
     ===== Código de TypeScript =====
