@@ -13,17 +13,18 @@ const tablet: Product = {
 	price: 350,
 };
 
-function calculateISV(products: Product[]): number {
+function calculateISV(products: Product[]): [number, number] {
 	let total = 0;
 
-	products.forEach((producto) => {
-		total += producto.price;
+	products.forEach(({ price }) => {
+		total += price;
 	});
 
-	return total * 0.15;
+	return [total, total * 0.15];
 }
 
 const articles = [telephone, tablet];
-const isv = calculateISV(articles);
+const [total, isv] = calculateISV(articles);
 
+console.log("total: ", total);
 console.log("ISV: ", isv);
