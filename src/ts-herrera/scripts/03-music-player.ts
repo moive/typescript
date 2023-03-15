@@ -34,3 +34,13 @@ console.log("The volume is: ", vol);
 console.log("The second is: ", second);
 console.log("The song is: ", song);
 console.log("The author is: ", authorDetail);
+
+console.log("===================================");
+
+const dbz: string[] = ["Goku", "Vegeta", "Trunks"];
+const [, , v3] = dbz;
+// const [v1, v2, v3] = dbz;
+
+// console.log("Character 1: ", v1);
+// console.log("Character 2: ", v2);
+console.log("Character 3: ", v3);
