@@ -1,5 +1,5 @@
 import "../sass/style.scss";
-import "./05-shopping-cart";
+import "./06-class-hero";
 
 /*
     ===== Código de TypeScript =====
