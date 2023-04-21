@@ -37,10 +37,11 @@ console.log("The author is: ", authorDetail);
 
 console.log("===================================");
 
-const dbz: string[] = ["Goku", "Vegeta", "Trunks"];
-const [, , v3] = dbz;
+const dbz: string[] = ["Goku", "Vegeta", "Trunks", "Picoro"];
+const [, , v3, v4 = "Not found"] = dbz; // v4 = "Not found" is default
 // const [v1, v2, v3] = dbz;
 
 // console.log("Character 1: ", v1);
 // console.log("Character 2: ", v2);
 console.log("Character 3: ", v3);
+console.log("Character 4: ", v4);
